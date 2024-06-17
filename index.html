@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Etch-a-Sketch</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="Sketch-container">
+      <header id="intro">
+        <h1>Etch-a-Sketch</h1>
+      </header>
+      <aside id="settings">
+        <fieldset>
+          <legend>Brushes</legend>
+          <button id="black-button">Black</button>
+          <button id="rainbow-button">Rainbow</button>
+          <button id="eraser-button">Eraser</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Options</legend>
+          <button id="reset-button">Reset</button>
+          <label id="display-size" for="set-size">Size: 16 x 16</label>
+          <input id="set-size" type="range" value="16" min="8" max="96" />
+        </fieldset>
+      </aside>
+      <main id="canvas"></main>
+      <footer id="outro">
+        <p>
+          The Odin Project @
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          By <a href="https://github.com/DaveBoydy">DaveBoydy</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
