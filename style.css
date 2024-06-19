@@ -1,0 +1,82 @@
+:root {
+  --primary: #d3d3d3;
+  --secondary: #fff;
+  --contrast: #000;
+
+  --large: 24px;
+  --extra-large: 64px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--primary);
+  color: var(--contrast);
+  padding: 0px clamp(1rem, 3.5vw, 2rem);
+}
+
+#sketch-container > #outro {
+  margin-top: auto;
+}
+
+#intro {
+  padding: 32px 0;
+}
+
+#intro > h1 {
+  text-align: center;
+  font-size: var(--extra-large);
+}
+
+#sketch-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#settings {
+  position: absolute;
+  top: 130px;
+  left: -380px;
+}
+
+#aside {
+  flex: auto;
+}
+
+#canvas {
+  background-color: var(--secondary);
+  height: 960px;
+  width: 960px;
+}
+
+button,
+input {
+  width: 100%;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+fieldset {
+  padding: 16px;
+}
+
+#outro {
+  padding: 16px 0;
+}
+
+#outro > p {
+  text-align: center;
+  font-size: var(--large);
+}
