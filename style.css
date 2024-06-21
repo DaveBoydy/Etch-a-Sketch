@@ -46,7 +46,8 @@ body {
 #settings {
   position: absolute;
   top: 130px;
-  left: -380px;
+  left: -300px;
+  width: 240px;
 }
 
 #aside {
