@@ -1,3 +1,7 @@
+const DEFAULT_GRID_SIZE = 16;
+
+const canvas = document.getElementById("canvas");
+
 /*
  * Referenced DOM nodes with JS variables for the use of
  * event listeners defined later in the code.
@@ -24,8 +28,8 @@ setResetButton = () => console.log("the canvas has been reset to default");
 
 //TODO set the grid size.
 setSliderSize = (e) => {
-  console.log("the canvas size has been set");
   sizeLabel.textContent = `Canvas size: ${e.target.value} x ${e.target.value}`;
+  setupGrid(e.target.value);
 };
 
 /*
@@ -42,5 +46,30 @@ addEventListener("load", (event) => {
   sizeLabel.textContent = `Canvas size: ${sizeSlider.value} x ${sizeSlider.value}`;
   sizeSlider.addEventListener("input", setSliderSize);
 
+  setupGrid(DEFAULT_GRID_SIZE);
+
   console.log("The page is fully loaded.");
 });
+
+/*
+ * Helper functions
+ */
+
+function setupGrid(size) {
+  removeGridTiles();
+  for (let i = 0; i < size * size; i++) {
+    const gridTile = document.createElement("div");
+    gridTile.classList.add("grid-tile");
+    canvas.appendChild(gridTile);
+    console.log("added a new tile");
+  }
+  console.log("the canvas size has been set");
+}
+
+function removeGridTiles() {
+  while (canvas.firstChild) {
+    canvas.removeChild(canvas.firstChild);
+    console.log("removed an old tile");
+  }
+  console.log("the canvas has been reset");
+}
