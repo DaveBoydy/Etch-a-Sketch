@@ -26,7 +26,6 @@ setEraserButton = () => console.log("the eraser brush has been selected");
 //TODO reset the canvas to default.
 setResetButton = () => console.log("the canvas has been reset to default");
 
-//TODO set the grid size.
 setSliderSize = (e) => {
   sizeLabel.textContent = `Canvas size: ${e.target.value} x ${e.target.value}`;
   setupGrid(e.target.value);
@@ -57,19 +56,24 @@ addEventListener("load", (event) => {
 
 function setupGrid(size) {
   removeGridTiles();
+
+  let gridTile;
   for (let i = 0; i < size * size; i++) {
-    const gridTile = document.createElement("div");
-    gridTile.classList.add("grid-tile");
+    gridTile = document.createElement("div");
+    // gridTile.classList.add("grid-tile");
     canvas.appendChild(gridTile);
+    gridTile.style.flex = `1 1 calc(960px / ${size})`;
     console.log("added a new tile");
   }
+
   console.log("the canvas size has been set");
 }
 
 function removeGridTiles() {
   while (canvas.firstChild) {
-    canvas.removeChild(canvas.firstChild);
+    canvas.removeChild(canvas.lastChild);
     console.log("removed an old tile");
   }
+
   console.log("the canvas has been reset");
 }
