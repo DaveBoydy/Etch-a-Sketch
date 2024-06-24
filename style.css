@@ -58,6 +58,8 @@ body {
   background-color: var(--secondary);
   height: 960px;
   width: 960px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 button,

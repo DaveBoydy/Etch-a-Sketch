@@ -1,6 +1,7 @@
 const DEFAULT_GRID_SIZE = 16;
 
 const canvas = document.getElementById("canvas");
+let sliderSize = DEFAULT_GRID_SIZE;
 
 /*
  * Referenced DOM nodes with JS variables for the use of
@@ -9,6 +10,7 @@ const canvas = document.getElementById("canvas");
 const blackButton = document.querySelector("#black-button");
 const rainbowButton = document.querySelector("#rainbow-button");
 const eraserButton = document.querySelector("#eraser-button");
+const resizeButton = document.querySelector("#resize-button");
 const resetButton = document.querySelector("#reset-button");
 
 const sizeLabel = document.querySelector("#label-size-display");
@@ -28,7 +30,13 @@ setResetButton = () => console.log("the canvas has been reset to default");
 
 setSliderSize = (e) => {
   sizeLabel.textContent = `Canvas size: ${e.target.value} x ${e.target.value}`;
-  setupGrid(e.target.value);
+  sliderSize = e.target.value;
+
+  console.log(`the slider size is ${sliderSize}px`);
+};
+
+setCanvasSize = () => {
+  setupGrid(sliderSize);
 };
 
 /*
@@ -40,6 +48,7 @@ addEventListener("load", (event) => {
   rainbowButton.addEventListener("click", setRainbowButton);
   eraserButton.addEventListener("click", setEraserButton);
   resetButton.addEventListener("click", setResetButton);
+  resizeButton.addEventListener("click", setCanvasSize);
 
   sizeLabel.textContent = sizeSlider.value;
   sizeLabel.textContent = `Canvas size: ${sizeSlider.value} x ${sizeSlider.value}`;
