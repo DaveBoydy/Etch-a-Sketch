@@ -1,6 +1,7 @@
 const DEFAULT_GRID_SIZE = 16;
 
 const canvas = document.getElementById("canvas");
+const gridFragment = document.createDocumentFragment();
 let sliderSize = DEFAULT_GRID_SIZE;
 
 /*
@@ -63,26 +64,28 @@ addEventListener("load", (event) => {
  * Helper functions
  */
 
-function setupGrid(size) {
+setupGrid = (size) => {
   removeGridTiles();
 
-  let gridTile;
-  for (let i = 0; i < size * size; i++) {
-    gridTile = document.createElement("div");
-    // gridTile.classList.add("grid-tile");
-    canvas.appendChild(gridTile);
-    gridTile.style.flex = `1 1 calc(960px / ${size})`;
-    console.log("added a new tile");
+  for (let i = 1; i <= size; i++) {
+    let row = document.createElement("div");
+    row.setAttribute("class", "grid-row");
+    console.log("created a new grid row");
+    for (let j = 1; j <= size; j++) {
+      let gridTile = document.createElement("div");
+      gridTile.setAttribute("class", "grid-tile");
+      row.appendChild(gridTile);
+    }
+    gridFragment.appendChild(row);
   }
+  canvas.appendChild(gridFragment);
 
   console.log("the canvas size has been set");
-}
+};
 
-function removeGridTiles() {
-  while (canvas.firstChild) {
-    canvas.removeChild(canvas.lastChild);
-    console.log("removed an old tile");
-  }
-
+removeGridTiles = () => {
+  document.querySelectorAll(".grid-row").forEach((row) => {
+    row.parentNode.removeChild(row);
+  });
   console.log("the canvas has been reset");
-}
+};

@@ -59,7 +59,16 @@ body {
   height: 960px;
   width: 960px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.grid-row {
+  display: flex;
+  flex: auto;
+}
+
+.grid-tile {
+  flex: inherit;
 }
 
 button,
