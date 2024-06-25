@@ -62,21 +62,18 @@ body {
   flex-direction: column;
 }
 
-.grid-row {
+.grid-row,
+.grid-tile {
   display: flex;
   flex: auto;
-}
-
-.grid-tile {
-  flex: inherit;
 }
 
 button,
 input {
   width: 100%;
-  color: inherit;
+  /* color: inherit;
   font-family: inherit;
-  font-size: inherit;
+  font-size: inherit; */
   cursor: pointer;
 }
 

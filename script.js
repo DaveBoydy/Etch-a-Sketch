@@ -1,12 +1,18 @@
 const DEFAULT_GRID_SIZE = 16;
+const DEFAULT_BRUSH_COLOR = "black";
+const BLACK_BRUSH = "#333";
+const ERASER_BRUSH = "#000";
+
+let sliderSize = DEFAULT_GRID_SIZE;
+let brushType = DEFAULT_BRUSH_COLOR;
+let mouseDown = false;
 
 const canvas = document.getElementById("canvas");
 const gridFragment = document.createDocumentFragment();
-let sliderSize = DEFAULT_GRID_SIZE;
 
 /*
  * Referenced DOM nodes with JS variables for the use of
- * event listeners defined later in the code.
+ * event listeners.
  */
 const blackButton = document.querySelector("#black-button");
 const rainbowButton = document.querySelector("#rainbow-button");
@@ -18,8 +24,30 @@ const sizeLabel = document.querySelector("#label-size-display");
 const sizeSlider = document.querySelector("#size-slider");
 
 /*
+ * Setup event listeners (observers) after the page 'load' event fires
+ * so that all page elements are loaded before any logic is executed.
+ */
+addEventListener("load", (event) => {
+  sizeLabel.textContent = sizeSlider.value;
+  sizeLabel.textContent = `Canvas size: ${sizeSlider.value} x ${sizeSlider.value}`;
+
+  blackButton.addEventListener("click", setBlackButton);
+  rainbowButton.addEventListener("click", setRainbowButton);
+  eraserButton.addEventListener("click", setEraserButton);
+  resetButton.addEventListener("click", setResetButton);
+  resizeButton.addEventListener("click", setCanvasSize);
+  document.body.addEventListener("mouseup", setMouseUP);
+  document.body.addEventListener("mousedown", setMouseDown);
+  sizeSlider.addEventListener("input", setSliderSize);
+
+  setupGrid(DEFAULT_GRID_SIZE);
+
+  console.log("The page is fully loaded.");
+});
+
+/*
  * Implemented controller logic to respond to calls
- * from event listeners with appropriate action(s) I.E. (processing).
+ * from event listeners with appropriate action(s) I.E. processing.
  */
 //TODO set the selected brush type.
 setBlackButton = () => console.log("the black brush has been selected");
@@ -40,28 +68,16 @@ setCanvasSize = () => {
   setupGrid(sliderSize);
 };
 
-/*
- * Setup event listeners (observers) after the page 'load' event fires
- * so that all page elements are loaded before any logic is executed.
- */
-addEventListener("load", (event) => {
-  blackButton.addEventListener("click", setBlackButton);
-  rainbowButton.addEventListener("click", setRainbowButton);
-  eraserButton.addEventListener("click", setEraserButton);
-  resetButton.addEventListener("click", setResetButton);
-  resizeButton.addEventListener("click", setCanvasSize);
+setMouseUP = () => {
+  mouseDown = false;
+};
 
-  sizeLabel.textContent = sizeSlider.value;
-  sizeLabel.textContent = `Canvas size: ${sizeSlider.value} x ${sizeSlider.value}`;
-  sizeSlider.addEventListener("input", setSliderSize);
-
-  setupGrid(DEFAULT_GRID_SIZE);
-
-  console.log("The page is fully loaded.");
-});
+setMouseDown = () => {
+  mouseDown = true;
+};
 
 /*
- * Helper functions
+ * Helper functions.
  */
 
 setupGrid = (size) => {
@@ -80,6 +96,8 @@ setupGrid = (size) => {
   }
   canvas.appendChild(gridFragment);
 
+  addTileObservers();
+
   console.log("the canvas size has been set");
 };
 
@@ -88,4 +106,25 @@ removeGridTiles = () => {
     row.parentNode.removeChild(row);
   });
   console.log("the canvas has been reset");
+};
+
+addTileObservers = () => {
+  document.querySelectorAll(".grid-tile").forEach((tile) => {
+    tile.addEventListener("mouseover", drawOnCanvas);
+    tile.addEventListener("mousedown", drawOnCanvas);
+  });
+};
+
+drawOnCanvas = (e) => {
+  if (e.type === "mouseover" && !mouseDown) return;
+  if (brushType === "rainbow") {
+    const redRange = Math.floor(Math.random() * 256);
+    const greenRange = Math.floor(Math.random() * 256);
+    const blueRange = Math.floor(Math.random() * 256);
+    e.target.style.backgroundColor = `rgb(${redRange}, ${greenRange}, ${blueRange})`;
+  } else if (brushType === "black") {
+    e.target.style.backgroundColor = BLACK_BRUSH;
+  } else if (brushType === "eraser") {
+    e.target.style.backgroundColor = ERASER_BRUSH;
+  }
 };
