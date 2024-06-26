@@ -1,10 +1,12 @@
 const DEFAULT_GRID_SIZE = 16;
-const DEFAULT_BRUSH_COLOR = "black";
-const BLACK_BRUSH = "#333";
-const ERASER_BRUSH = "#000";
+const TYPE_BLACK = "black";
+const TYPE_RAINBOW = "rainbow";
+const TYPE_ERASER = "eraser";
+const BLACK_BRUSH = "#000";
+const ERASER_BRUSH = "#fff";
 
 let sliderSize = DEFAULT_GRID_SIZE;
-let brushType = DEFAULT_BRUSH_COLOR;
+let brushType = TYPE_BLACK;
 let mouseDown = false;
 
 const canvas = document.getElementById("canvas");
@@ -50,9 +52,15 @@ addEventListener("load", (event) => {
  * from event listeners with appropriate action(s) I.E. processing.
  */
 //TODO set the selected brush type.
-setBlackButton = () => console.log("the black brush has been selected");
-setRainbowButton = () => console.log("the rainbow brush has been selected");
-setEraserButton = () => console.log("the eraser brush has been selected");
+setBlackButton = () => {
+  brushType = TYPE_BLACK;
+};
+setRainbowButton = () => {
+  brushType = TYPE_RAINBOW;
+};
+setEraserButton = () => {
+  brushType = TYPE_ERASER;
+};
 
 //TODO reset the canvas to default.
 setResetButton = () => console.log("the canvas has been reset to default");
@@ -117,14 +125,14 @@ addTileObservers = () => {
 
 drawOnCanvas = (e) => {
   if (e.type === "mouseover" && !mouseDown) return;
-  if (brushType === "rainbow") {
+  if (brushType === TYPE_RAINBOW) {
     const redRange = Math.floor(Math.random() * 256);
     const greenRange = Math.floor(Math.random() * 256);
     const blueRange = Math.floor(Math.random() * 256);
     e.target.style.backgroundColor = `rgb(${redRange}, ${greenRange}, ${blueRange})`;
-  } else if (brushType === "black") {
+  } else if (brushType === TYPE_BLACK) {
     e.target.style.backgroundColor = BLACK_BRUSH;
-  } else if (brushType === "eraser") {
+  } else if (brushType === TYPE_ERASER) {
     e.target.style.backgroundColor = ERASER_BRUSH;
   }
 };
