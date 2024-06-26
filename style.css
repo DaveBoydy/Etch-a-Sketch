@@ -1,6 +1,6 @@
 :root {
-  --primary: #d3d3d3;
-  --secondary: #fff;
+  --primary: #fff;
+  /* --secondary: #fff; */
   --contrast: #000;
 
   --large: 24px;
@@ -46,36 +46,53 @@ body {
 #settings {
   position: absolute;
   top: 130px;
-  left: -300px;
-  width: 240px;
+  left: -216px;
+  width: 192px;
 }
 
-#aside {
-  flex: auto;
+#settings > fieldset {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 12px;
+  border: 1px solid var(--contrast);
+}
+
+button,
+input {
+  width: 100%;
+  background-color: inherit;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+button {
+  padding: 6px 0px;
+  border-radius: 5px;
+  border: 1px solid var(--contrast);
+}
+
+button:active {
+  background-color: var(--contrast);
+  color: var(--primary);
+}
+
+input[type="range"] {
+  accent-color: var(--contrast);
 }
 
 #canvas {
-  background-color: var(--secondary);
+  background-color: var(--primary);
+  border: 1px solid var(--contrast);
   height: 960px;
   width: 960px;
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .grid-row,
 .grid-tile {
   display: flex;
   flex: auto;
-}
-
-button,
-input {
-  width: 100%;
-  cursor: pointer;
-}
-
-fieldset {
-  padding: 16px;
 }
 
 #outro {
@@ -85,4 +102,13 @@ fieldset {
 #outro > p {
   text-align: center;
   font-size: var(--large);
+}
+
+a,
+a:visited {
+  color: var(--contrast);
+}
+
+a:hover {
+  text-decoration: underline dashed;
 }

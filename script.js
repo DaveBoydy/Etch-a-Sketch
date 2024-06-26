@@ -30,7 +30,7 @@ const sizeSlider = document.querySelector("#size-slider");
  */
 addEventListener("load", (event) => {
   sizeLabel.textContent = sizeSlider.value;
-  sizeLabel.textContent = `Canvas size: ${sizeSlider.value} x ${sizeSlider.value}`;
+  sizeLabel.textContent = `Size: ${sizeSlider.value} x ${sizeSlider.value}`;
 
   blackButton.addEventListener("click", setBlackButton);
   rainbowButton.addEventListener("click", setRainbowButton);
@@ -64,7 +64,7 @@ setEraserButton = () => {
 setResetButton = () => console.log("the canvas has been reset to default");
 
 setSliderSize = (e) => {
-  sizeLabel.textContent = `Canvas size: ${e.target.value} x ${e.target.value}`;
+  sizeLabel.textContent = `Size: ${e.target.value} x ${e.target.value}`;
   sliderSize = e.target.value;
 
   console.log(`the slider size is ${sliderSize}px`);
