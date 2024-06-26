@@ -20,7 +20,6 @@ const blackButton = document.querySelector("#black-button");
 const rainbowButton = document.querySelector("#rainbow-button");
 const eraserButton = document.querySelector("#eraser-button");
 const resizeButton = document.querySelector("#resize-button");
-const resetButton = document.querySelector("#reset-button");
 
 const sizeLabel = document.querySelector("#label-size-display");
 const sizeSlider = document.querySelector("#size-slider");
@@ -36,7 +35,6 @@ addEventListener("load", (event) => {
   blackButton.addEventListener("click", setBlackButton);
   rainbowButton.addEventListener("click", setRainbowButton);
   eraserButton.addEventListener("click", setEraserButton);
-  resetButton.addEventListener("click", setResetButton);
   resizeButton.addEventListener("click", setCanvasSize);
   document.body.addEventListener("mouseup", setMouseUP);
   document.body.addEventListener("mousedown", setMouseDown);
@@ -125,6 +123,8 @@ addTileObservers = () => {
 
 drawOnCanvas = (e) => {
   if (e.type === "mouseover" && !mouseDown) return;
+  incrementBrushOpacity(e);
+
   if (brushType === TYPE_RAINBOW) {
     const redRange = Math.floor(Math.random() * 256);
     const greenRange = Math.floor(Math.random() * 256);
@@ -134,5 +134,17 @@ drawOnCanvas = (e) => {
     e.target.style.backgroundColor = BLACK_BRUSH;
   } else if (brushType === TYPE_ERASER) {
     e.target.style.backgroundColor = ERASER_BRUSH;
+    e.target.style.opacity = "";
   }
+};
+
+incrementBrushOpacity = (e) => {
+  if (+e.target.style.opacity === 0) {
+    e.target.style.opacity = 0.1;
+  } else if (+e.target.style.opacity !== 0 && +e.target.style.opacity !== 1) {
+    let brushOpacity = +e.target.style.opacity;
+    e.target.style.opacity = brushOpacity + 0.1;
+  }
+
+  console.log(`brush opacity ${e.target.style.opacity}`);
 };
