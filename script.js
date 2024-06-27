@@ -123,7 +123,13 @@ addTileObservers = () => {
 
 drawOnCanvas = (e) => {
   if (e.type === "mouseover" && !mouseDown) return;
-  incrementBrushOpacity(e);
+  if (document.getElementById("opacity-check").checked) {
+    console.log("opacity check box checked");
+    incrementBrushOpacity(e);
+  } else {
+    console.log("opacity check box unchecked");
+    e.target.style.opacity = 1;
+  }
 
   if (brushType === TYPE_RAINBOW) {
     const redRange = Math.floor(Math.random() * 256);

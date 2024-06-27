@@ -15,14 +15,23 @@
 
       <aside id="settings">
         <fieldset>
-          <legend>Brushes</legend>
+          <legend><b>Brushes</b></legend>
           <button id="black-button" class="brush">Black</button>
           <button id="rainbow-button" class="brush">Rainbow</button>
           <button id="eraser-button" class="brush">Eraser</button>
         </fieldset>
         <br />
         <fieldset>
-          <legend>Settings</legend>
+          <legend><b>Settings</b></legend>
+          <div class="checkbox">
+            <label id="opacity-label" for="opacity-check"
+              >Increment opacity:</label
+            >
+            <input type="checkbox" id="opacity-check" checked />
+          </div>
+
+          <hr />
+
           <label id="label-size-display" for="set-size"></label>
           <input
             id="size-slider"

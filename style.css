@@ -46,7 +46,7 @@ body {
   position: absolute;
   top: 128px;
   left: -200px;
-  width: 160px;
+  width: 164px;
 }
 
 #settings > fieldset {
@@ -55,12 +55,25 @@ body {
   border: 1px solid var(--contrast);
 }
 
+input[type="checkbox"] {
+  width: auto;
+  vertical-align: middle;
+}
+
+#opacity-check {
+  accent-color: var(--contrast);
+}
+
 button,
 input {
   width: 100%;
   background-color: inherit;
   cursor: pointer;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+hr {
+  margin: 6px 0px;
 }
 
 button {
@@ -93,6 +106,7 @@ input[type="range"]::-moz-range-track {
   background: var(--primary);
   border: 1px solid var(--contrast);
   border-radius: 25px;
+  padding: 0.5px;
 }
 
 #canvas {
