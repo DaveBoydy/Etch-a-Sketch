@@ -169,12 +169,12 @@ a:hover {
 
   #settings {
     position: static;
-    width: 348px;
+    width: 364px;
     display: flex;
     gap: 16px;
     margin: 16px auto;
   }
   fieldset {
-    width: 164px;
+    width: 180px;
   }
 }
