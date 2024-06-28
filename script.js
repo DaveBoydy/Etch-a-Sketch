@@ -49,7 +49,7 @@ addEventListener("load", (event) => {
  * Implemented controller logic to respond to calls
  * from event listeners with appropriate action(s) I.E. processing.
  */
-//TODO set the selected brush type.
+
 setBlackButton = () => {
   brushType = TYPE_BLACK;
 };
@@ -59,9 +59,6 @@ setRainbowButton = () => {
 setEraserButton = () => {
   brushType = TYPE_ERASER;
 };
-
-//TODO reset the canvas to default.
-setResetButton = () => console.log("the canvas has been reset to default");
 
 setSliderSize = (e) => {
   sizeLabel.textContent = `Size: ${e.target.value} x ${e.target.value}`;
